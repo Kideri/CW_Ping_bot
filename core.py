@@ -16,4 +16,4 @@ def start_command(message):
 
 
 if __name__ == '__main__':
-    bot.polling(none_stop=True, timeout=123)
+    bot.polling(none_stop=True)
