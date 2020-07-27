@@ -1,9 +1,6 @@
 import telebot
 import config
 import ru_en
-from telebot import apihelper
-
-apihelper.proxy = {'https':'https://93.115.23.229:3128'}
 
 bot = telebot.TeleBot(config.token)
 
