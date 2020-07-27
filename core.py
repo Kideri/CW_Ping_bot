@@ -7,10 +7,10 @@ bot = telebot.TeleBot(config.token)
 
 @bot.message_handler(commands=['start'])
 def start_command(message):
-    keyboard = types.ReplyKeyboardMarkup()
-    russian = types.KeyboardButton(text='\xF0\x9F\x87\xB7\xF0\x9F\x87\xBA Русский')
-    english = types.KeyboardButton(text='\xF0\x9F\x87\xBA\xF0\x9F\x87\xB8 English')
-    keyboard.add(russian, english)
+    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    russian = types.KeyboardButton(text='🇷🇺 Русский')
+    english = types.KeyboardButton(text='🇺🇸 English')
+    keyboard.row(russian, english)
     bot.send_message(message.chat.id, ru_en.welcome, reply_markup=keyboard)
 
 
