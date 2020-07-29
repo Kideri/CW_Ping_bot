@@ -2,6 +2,11 @@ import telebot
 import config
 import ru_en
 from telebot import types
+from logger.logger import Logger
+
+service = 'GLOBAL'
+logger = Logger()
+logger.service_init(service)
 
 bot = telebot.TeleBot(config.token)
 
