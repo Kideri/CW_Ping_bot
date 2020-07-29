@@ -1,12 +1,13 @@
 import psycopg2
 from . import db_config as config
-from core import logger
 
 class Controller:
     service = 'DB'
+    logger = ''
 
-    def __init__(self):
+    def __init__(self, logger):
         super().__init__()
+        logger = logger
         logger.service_init(service)
         logger.log(service, 'Creating connection')
         conn = psycopg2.connect(dbname=config.NAME, user=config.USER,

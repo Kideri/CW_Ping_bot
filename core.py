@@ -8,7 +8,7 @@ from database.db_controller import Controller
 service = 'GLOBAL'
 logger = Logger()
 logger.service_init(service)
-Controller = Controller()
+Controller = Controller(logger)
 
 bot = telebot.TeleBot(config.token)
 
