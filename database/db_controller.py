@@ -1,5 +1,5 @@
 import psycopg2
-import database.db_config as config
+import db_config as config
 from core import logger
 
 class Controller:
