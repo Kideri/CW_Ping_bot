@@ -3,10 +3,12 @@ import config
 import ru_en
 from telebot import types
 from logger.logger import Logger
+from database.db_controller import Controller
 
 service = 'GLOBAL'
 logger = Logger()
 logger.service_init(service)
+Controller = Controller()
 
 bot = telebot.TeleBot(config.token)
 

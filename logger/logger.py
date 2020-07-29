@@ -2,11 +2,11 @@ class Logger:
 
     def __init__(self):
         super().__init__()
-        print ('[GLOBAL] \{LOGGER\} started')
+        print ('[LOGGER] {LOGGER} started')
 
     def log(self, service, message):
         print('[' + service + '] ' + message)
 
 
     def service_init(self, service):
-        print('[LOGGER] Service \{' + service + '\} initialized')
+        print('[LOGGER] Service {' + service + '} initialized')
