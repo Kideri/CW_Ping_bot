@@ -7,13 +7,13 @@ class Controller:
 
     def __init__(self, logger):
         super().__init__()
-        Controller.logger = logger
-        Controller.logger.service_init(Controller.service)
-        Controller.logger.log(service, 'Creating connection')
+        self.logger = logger
+        self.logger.service_init(self.service)
+        self.logger.log(self.service, 'Creating connection')
         conn = psycopg2.connect(dbname=config.NAME, user=config.USER,
                                 password=config.PASSWORD, host=config.HOST)
-        Controller.logger.log(service, 'Connection created')
+        self.logger.log(self.service, 'Connection created')
 
-        Controller.logger.log(service, 'Creating cursor')
+        self.logger.log(self.service, 'Creating cursor')
         cursor = conn.cursor
-        Controller.logger.log(service, 'Cursor created')
+        self.logger.log(self.service, 'Cursor created')
