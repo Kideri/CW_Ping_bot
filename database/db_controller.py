@@ -28,7 +28,7 @@ class Controller:
         guilds_result = 'found'
         try:
             self.cursor.execute('SELECT * FROM information_schema.tables WHERE table_name=\'%s\''%('users'))
-            if self.cursor.fetchone() is not None:
+            if self.cursor.fetchone() is None:
                 users_table = False
                 users_result = 'not found'
         except psycopg2.Error as e:
@@ -37,7 +37,7 @@ class Controller:
             self.cursor.execute('ROLLBACK')
         try:
             self.cursor.execute('SELECT * FROM information_schema.tables WHERE table_name=\'%s\''%('guilds'))
-            if self.cursor.fetchone() is not None:
+            if self.cursor.fetchone() is None:
                 guilds_table = False
                 guilds_result = 'not found'
         except psycopg2.Error as e:
