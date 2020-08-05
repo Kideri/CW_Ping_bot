@@ -68,11 +68,16 @@ class Controller:
                                             guild_admin integer,
                                             ping_time text
                                         );''')
+            result = ''
+            if not users_table and guilds_table:
+                result = 'users, guilds'
+            elif not users_table:
+                result = 'users'
+            else:
+                result = 'guilds'
             self.logger.log(self.service, 
                             'Tables {%s} created in %sms'%(
-                                not users_table and not guilds_table if 'users, guilds'
-                                else not users_table if 'users'
-                                else 'guilds',
+                                result,
                                 str(int((time.time() - start_time) * 1000))
                             ))
     
@@ -82,9 +87,9 @@ class Controller:
         data = self.cursor.fetchone()
         if data is None:
             self.cursor.execute('INSERT INTO users(user_id) VALUES(%s)', (user_id,))
-            self.logger(self.service, 'User with id {%s} successfully created'%(user_id))
+            self.logger.log(self.service, 'User with id {%s} successfully created'%(user_id))
         else:
-            self.logger(self.service, 'User with id {%s} already exists, nothing happend'%(user_id))
+            self.logger.log(self.service, 'User with id {%s} already exists, nothing happend'%(user_id))
     
 
     def set_language(self, user_id, language):
