@@ -23,17 +23,23 @@ class Controller:
         self.logger.log(self.service, 'Searching for tables...')
         start_time = time.time()
         users_table = True
+        users_result = 'found'
         guilds_table = True
+        guilds_result = 'found'
         try:
             result = self.cursor.execute('SELECT * FROM information_schema.tables WHERE table_name=%s'%('users'))
         except psycopg2.Error as e:
             users_table = False
+            users_result = 'not found'
+            self.cursor.execute('ROLLBACK')
         try:
             result = self.cursor.execute('SELECT * FROM information_schema.tables WHERE table_name=%s'%('guilds'))
         except psycopg2.Error as e:
             guilds_table = False
-        self.logger.log(self.service, 'Table users %s, table guilds %s. Time of completion: %s'%((users_table if 'found' else 'not found'),
-                                                                                                 (guilds_table if 'found' else 'not found'),
+            guilds_result = 'not found'
+            self.cursor.execute('ROLLBACK')
+        self.logger.log(self.service, 'Table users %s, table guilds %s. Time of completion: %sms'%(users_result,
+                                                                                                 guilds_result,
                                                                                                  str(int((time.time() - start_time) * 1000))))
         if not users_table or not guilds_table:
             self.logger.log(self.service, 'Creating not existing tables...')
