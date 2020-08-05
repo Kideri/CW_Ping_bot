@@ -4,16 +4,17 @@ class Parser:
     service = 'Parser'
     logger = ''
     worker = ''
-    global_command_list = {
-        '🇷🇺 Русский': worker.set_local_ru(),
-        '🇺🇸 English': worker.set_local_en(),
-    }
-    status_change_command_list = []
+    global_command_list = ''
+    status_change_command_list = ''
 
 
     def __init__(self, logger, worker):
         self.logger = logger
         self.logger.service_init(self.service)
+        self.global_command_list = {
+            '🇷🇺 Русский': self.worker.set_local_ru,
+            '🇺🇸 English': self.worker.set_local_en,
+        }
         self.logger.log(self.service, 'Command list initialized: ' + 
                                       len(self.global_command_list) + ' global commands, ' + 
                                       len(self.status_change_command_list) + ' status change commands')
