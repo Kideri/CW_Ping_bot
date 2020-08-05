@@ -30,7 +30,7 @@ class Controller:
             result = self.cursor.execute('SELECT * FROM information_schema.tables WHERE table_name=%s'%('users'))
             self.cursor.commit()
         except psycopg2.Error as e:
-            self.logger.log(self.service, e)
+            self.logger.log(self.service, str(e))
             users_table = False
             users_result = 'not found'
             self.cursor.execute('ROLLBACK')
