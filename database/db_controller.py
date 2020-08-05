@@ -24,10 +24,10 @@ class Controller:
         start_time = time.time()
         users_table = True
         guilds_table = True
-        result = self.cursor.execute('SELECT name FROM sqlite_master WHERE type=\'table\' AND name=\'users\'')
+        result = self.cursor.execute('SELECT name FROM information_schema.tables WHERE table_name=%s'%('users'))
         if result.getCount() == 0:
             users_table = False
-        result = self.cursor.execute('SELECT name FROM sqlite_master WHERE type=\'table\' AND name=\'guilds\'')
+        result = self.cursor.execute('SELECT name FROM information_schema.tables WHERE table_name=%s'%('guilds'))
         if result.getCount() == 0:
             guilds_table = False
         self.logger.log(self.service, 'Table users %s, table guilds %s. Time of completion: %s'%((users_table if 'found' else 'not found'),
