@@ -5,8 +5,8 @@ class Parser:
     logger = ''
     worker = ''
     global_command_list = {
-        '🇷🇺 Русский': Worker.set_local_ru,
-        '🇺🇸 English': Worker.set_local_en,
+        '🇷🇺 Русский': worker.set_local_ru,
+        '🇺🇸 English': worker.set_local_en,
     }
     status_change_command_list = []
 
@@ -23,9 +23,9 @@ class Parser:
     def parse(self, user_id, text):
         if text in self.global_comand_list:
             self.logger.log(self.service, 'User %s called global command: {%s}'%(user_id, text))
-            return self.worker.global_command_list[text]()
+            return self.global_command_list[text]()
         if text in self.status_change_command_list:
             self.logger.log(self.service, 'User %s called status change command: {%s}'%(user_id, text))
-            return self.worker.status_change_comand_list[text]()
+            return self.status_change_comand_list[text]()
         self.logger.log(self.service, 'User %s called unknown command: {%s}'%(user_id, text))
         return 'failed'
