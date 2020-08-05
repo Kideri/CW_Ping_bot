@@ -32,12 +32,18 @@ class Controller:
             users_table = False
             users_result = 'not found'
             self.cursor.execute('ROLLBACK')
+        if not bool(result.rowCount):
+            users_table = False
+            users_result = 'not found'
         try:
             result = self.cursor.execute('SELECT * FROM information_schema.tables WHERE table_name=\'%s\''%('guilds'))
         except psycopg2.Error as e:
             guilds_table = False
             guilds_result = 'not found'
             self.cursor.execute('ROLLBACK')
+        if not bool(result.rowCount):
+            guilds_table = False
+            guilds_result = 'not found'
         self.logger.log(self.service, 'Table users %s, table guilds %s. Time of completion: %sms'%(users_result,
                                                                                                  guilds_result,
                                                                                                  str(int((time.time() - start_time) * 1000))))
