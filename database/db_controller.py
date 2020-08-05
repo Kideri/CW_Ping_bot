@@ -27,15 +27,14 @@ class Controller:
         guilds_table = True
         guilds_result = 'found'
         try:
-            result = self.cursor.execute('SELECT * FROM information_schema.tables WHERE table_name=%s'%('users'))
+            result = self.cursor.execute('SELECT * FROM information_schema.tables WHERE table_name=\'%s\''%('users'))
             self.cursor.commit()
         except psycopg2.Error as e:
-            self.logger.log(self.service, str(e))
             users_table = False
             users_result = 'not found'
             self.cursor.execute('ROLLBACK')
         try:
-            result = self.cursor.execute('SELECT * FROM information_schema.tables WHERE table_name=%s'%('guilds'))
+            result = self.cursor.execute('SELECT * FROM information_schema.tables WHERE table_name=\'%s\''%('guilds'))
         except psycopg2.Error as e:
             guilds_table = False
             guilds_result = 'not found'
@@ -65,7 +64,7 @@ class Controller:
                                             ping_time text
                                         );''')
             self.logger.log(self.service, 
-                            'Tables {%s} created in %s'%(
+                            'Tables {%s} created in %sms'%(
                                 not users_table and not guilds_table if 'users, guilds'
                                 else not users_table if 'users'
                                 else 'guilds',
