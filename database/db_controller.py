@@ -75,7 +75,7 @@ class Controller:
         self.cursor.execute('SELECT * FROM users WHERE user_id = %s', (user_id,))
         data = self.cursor.fetchone()
         if data is None:
-            self.cursor.execute('INSERT INTO users VALUES(%s)', (user_id,))
+            self.cursor.execute('INSERT INTO users(user_id) VALUES(%s)', (user_id,))
             self.logger(self.service, 'User with id {%s} successfully created'%(user_id))
         else:
             self.logger(self.service, 'User with id {%s} already exists, nothing happend'%(user_id))
