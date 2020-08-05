@@ -74,7 +74,7 @@ class Controller:
                 cursor.close()
                 self.conn.commit()
             result = ''
-            if not users_table and guilds_table:
+            if not users_table and not guilds_table:
                 result = 'users, guilds'
             elif not users_table:
                 result = 'users'
