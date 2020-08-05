@@ -7,7 +7,7 @@ class Worker:
 
     def __init__(self, logger, controller):
         self.logger = logger
-        self.logger.service_init(service)
+        self.logger.service_init(self.service)
         self.controller = controller
     
 
