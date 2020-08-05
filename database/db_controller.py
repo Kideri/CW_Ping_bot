@@ -17,7 +17,7 @@ class Controller:
         self.logger.log(self.service, 'Connection created')
 
         self.logger.log(self.service, 'Creating cursor')
-        self.cursor = conn.cursor
+        self.cursor = conn.cursor()
         self.logger.log(self.service, 'Cursor created')
 
         self.logger.log(self.service, 'Searching for tables...')
