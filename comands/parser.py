@@ -1,7 +1,7 @@
 from .worker import Worker
 
 class Parser:
-    service = 'Parser'
+    service = 'PARSER'
     logger = ''
     worker = ''
 

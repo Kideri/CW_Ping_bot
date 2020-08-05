@@ -1,7 +1,7 @@
 import ru, en
 
 class Worker:
-    service = 'Worker'
+    service = 'WORKER'
     logger = ''
     controller = ''
 
@@ -20,7 +20,7 @@ class Worker:
         self.controller.set_language(user_id, 'en')
         return en.language_set
 
-        
+
     global_command_list = {
         '🇷🇺 Русский': set_local_ru,
         '🇺🇸 English': set_local_en,
