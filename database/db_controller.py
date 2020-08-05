@@ -46,7 +46,7 @@ class Controller:
             start_time = time.time()
             if not users_table:
                 self.cursor.execute('''CREATE TABLE users(
-                                            id integer PRIMARY KEY,
+                                            id serial PRIMARY KEY,
                                             user_id integer NOT NULL,
                                             language text,
                                             battle_status text,
@@ -56,7 +56,7 @@ class Controller:
                                         );''')
             if not guilds_table:
                 self.cursor.execute('''CREATE TABLE guilds(
-                                            id integer PRIMARY KEY,
+                                            id serial PRIMARY KEY,
                                             chat_id integer,
                                             guild_name text,
                                             guild_admin integer,
