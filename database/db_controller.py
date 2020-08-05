@@ -28,7 +28,6 @@ class Controller:
         guilds_result = 'found'
         try:
             result = self.cursor.execute('SELECT * FROM information_schema.tables WHERE table_name=\'%s\''%('users'))
-            self.cursor.commit()
         except psycopg2.Error as e:
             users_table = False
             users_result = 'not found'
