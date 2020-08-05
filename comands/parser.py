@@ -11,8 +11,8 @@ class Parser:
         self.logger.service_init(self.service)
         self.worker = worker
         self.logger.log(self.service, 'Command list initialized: ' + 
-                                      len(self.worker.global_command_list) + ' global commands, ' + 
-                                      len(self.worker.status_change_command_list) + ' status change commands')
+                                      str(len(self.worker.global_command_list)) + ' global commands, ' + 
+                                      str(len(self.worker.status_change_command_list)) + ' status change commands')
         self.worker = worker
     
 
