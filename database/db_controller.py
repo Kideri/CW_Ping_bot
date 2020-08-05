@@ -24,11 +24,11 @@ class Controller:
         start_time = time.time()
         users_table = True
         guilds_table = True
-        result = self.cursor.execute('SELECT name FROM information_schema.tables WHERE table_name=%s'%('users'))
-        if result.getCount() == 0:
+        result = self.cursor.execute('SELECT * FROM information_schema.tables WHERE table_name=%s'%('users'))
+        if not bool(result.rowcount):
             users_table = False
-        result = self.cursor.execute('SELECT name FROM information_schema.tables WHERE table_name=%s'%('guilds'))
-        if result.getCount() == 0:
+        result = self.cursor.execute('SELECT * FROM information_schema.tables WHERE table_name=%s'%('guilds'))
+        if not bool(result.rowcount):
             guilds_table = False
         self.logger.log(self.service, 'Table users %s, table guilds %s. Time of completion: %s'%((users_table if 'found' else 'not found'),
                                                                                                  (guilds_table if 'found' else 'not found'),
