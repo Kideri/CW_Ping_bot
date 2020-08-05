@@ -4,6 +4,11 @@ class Worker:
     service = 'Worker'
     logger = ''
     controller = ''
+    global_command_list = {
+        '🇷🇺 Русский': set_local_ru,
+        '🇺🇸 English': set_local_en,
+    }
+    status_change_command_list = ''
 
     def __init__(self, logger, controller):
         self.logger = logger
