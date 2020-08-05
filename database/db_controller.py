@@ -24,11 +24,13 @@ class Controller:
         start_time = time.time()
         users_table = True
         guilds_table = True
-        result = self.cursor.execute('SELECT * FROM information_schema.tables WHERE table_name=%s'%('users'))
-        if not bool(result.rowcount):
+        try:
+            result = self.cursor.execute('SELECT * FROM information_schema.tables WHERE table_name=%s'%('users'))
+        except psycopg2.Error as e:
             users_table = False
-        result = self.cursor.execute('SELECT * FROM information_schema.tables WHERE table_name=%s'%('guilds'))
-        if not bool(result.rowcount):
+        try:
+            result = self.cursor.execute('SELECT * FROM information_schema.tables WHERE table_name=%s'%('guilds'))
+        except psycopg2.Error as e:
             guilds_table = False
         self.logger.log(self.service, 'Table users %s, table guilds %s. Time of completion: %s'%((users_table if 'found' else 'not found'),
                                                                                                  (guilds_table if 'found' else 'not found'),
