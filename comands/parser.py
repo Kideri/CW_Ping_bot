@@ -5,8 +5,8 @@ class Parser:
     logger = ''
     worker = ''
     global_command_list = {
-        '🇷🇺 Русский': worker.set_local_ru,
-        '🇺🇸 English': worker.set_local_en,
+        '🇷🇺 Русский': worker.set_local_ru(),
+        '🇺🇸 English': worker.set_local_en(),
     }
     status_change_command_list = []
 
@@ -15,8 +15,8 @@ class Parser:
         self.logger = logger
         self.logger.service_init(self.service)
         self.logger.log(self.service, 'Command list initialized: ' + 
-                                      len(self.global_comand_list) + ' global commands, ' + 
-                                      len(self.status_change_comand_list) + ' status change commands')
+                                      len(self.global_command_list) + ' global commands, ' + 
+                                      len(self.status_change_command_list) + ' status change commands')
         self.worker = worker
     
 
